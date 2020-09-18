@@ -1,4 +1,5 @@
 numpy
 bokeh
 pandas
+matplotlib
 jupyter
