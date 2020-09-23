@@ -6,3 +6,5 @@
 ### <span style="color:red"> Launch simulations </span>
 
 * <span style="color:red"> Launch simulations </span>  [here](https://mybinder.org/v2/gh/aladinoster/vrt_analysis/master?filepath=TF-AnalysisResponseTime.ipynb)
+
+![data](data/media/Fig3ResponseTimeKernel.png)
