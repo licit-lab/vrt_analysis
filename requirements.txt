@@ -1,5 +1,4 @@
 numpy
-bokeh
+scipy
 pandas
 matplotlib
-jupyter
