@@ -22,6 +22,11 @@ import matplotlib.pyplot as plt
 from dataclasses import dataclass, InitVar
 
 
+# ============================================================================
+# CLASS AND DEFINITIONS
+# ============================================================================
+
+
 class PlotClass:
     def plot(self, vary, **kwargs):
         f, a = plt.subplots(figsize=(7, 7))
