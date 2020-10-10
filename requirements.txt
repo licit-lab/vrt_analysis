@@ -2,3 +2,10 @@ numpy
 scipy
 pandas
 matplotlib
+seaborn
+requests
+sodapy
+python-decouple
+tqdm
+pylint
+black
