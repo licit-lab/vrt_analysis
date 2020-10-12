@@ -56,6 +56,9 @@ class GetData:
         self._csvpath = csv_path
         self._client = Socrata("data.transportation.gov", API_KEY)
 
+    def __repr__(self):
+        return f"{self.__class__.__name__}({self._csvpath})"
+
     def get_request(self, query):
         """ 
             Performs a query to the online DB. Check the SQL syntax here
@@ -139,6 +142,27 @@ class GetData:
     # LOCAL METHODS
     # ============================================================================
 
+    def compute_response_times(self, csvpath: str = ""):
+        """ 
+            Performs computation of the response times for a specific dataset, the 
+            full pipeline includes 
+
+            * loading data
+            * clenaing data 
+            * computing statistics 
+            * computing transition times 
+            * computing response times 
+                * (leader / follower) 
+                * (head / follower)
+
+        """
+        self._load_data_from_csv(csvpath)
+        self._clean_data()
+        self._compute_speed_statistics()
+        self._compute_transition_times()
+        self._compute_leader_follower_times()
+        self._compute_head_follower_times()
+
     def _load_data_from_csv(self, csv_path: str = ""):
         """
             Load csv data from the full path. 
@@ -210,7 +234,19 @@ class GetData:
         """
             Compute transition times from the 
         """
+        print(f"Treating case: {self._experiment}")
         self._transitiontimes = detect_transition_times(self._csvdata)
+        self._transitiontimes = pd.melt(self._transitiontimes, var_name="vehid").dropna()
+
+    def _compute_leader_follower_times(self):
+        return
+
+    def _compute_head_follower_times(self):
+        return
+
+    # ============================================================================
+    # Generic content probably for a general class to create heritage
+    # ============================================================================
 
     def plot_speeds(self, **kwargs):
         """
