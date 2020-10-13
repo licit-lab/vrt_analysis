@@ -161,7 +161,7 @@ def consecutive_times(test_list, *args):
 
     if len(test_list) < 2:
         try:
-            last_value = [t for t in test_list[0] if t > args[0]][0]
+            last_value = [t for t in test_list[0] if t > args[0] and t <= args[0] + 20][0]
             return [last_value]
         except IndexError:
             return []
@@ -171,11 +171,12 @@ def consecutive_times(test_list, *args):
         # Looks for informaiton in the follower
         # current_t = [[t for t in test_list[0] if t >= args[0] and t <= args[0] + 20][0]]
 
-        # Looks for information in the leader
-        current_t = args
-        next_t = consecutive_times(test_list[1:], current_t[0])
+        # Looks for information in the head of teh platoon
+        valid_t = [t for t in test_list[0] if t >= args[-1] and t <= args[-1] + 20]
+        values2compare = valid_t + [args[-1]]
+        next_t = consecutive_times(test_list[1:], values2compare[0], values2compare[-1])
     except IndexError:
         current_t = []
         next_t = []
 
-    return list(current_t) + next_t
+    return values2compare[:1] + next_t

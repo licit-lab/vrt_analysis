@@ -25,7 +25,7 @@ from matplotlib import pyplot as plt
 # ============================================================================
 
 from .constants import COLUMNS_SPACING, COLUMNS_SPEED, COLUMNS_TIME, average_velocity, changes, detection
-from .generic import standardize_dataframe, compute_statistics, detect_transition_times
+from .generic import standardize_dataframe, compute_statistics, detect_transition_times, consecutive_times
 
 # ============================================================================
 # CLASS AND DEFINITIONS
@@ -238,11 +238,43 @@ class GetData:
         self._transitiontimes = detect_transition_times(self._csvdata)
         self._transitiontimes = pd.melt(self._transitiontimes, var_name="vehid").dropna()
 
+    def _compute_reaction_timeinstants(self):
+        """
+            Retrieve reaction times from the transition times
+
+            The function constructs a list of lists, the inner lists contains transition times for all vehicles in the platoon 
+        """
+        lst_test = []
+
+        for _, v in self._transitiontimes.groupby("vehid"):
+            lst_test.append(list(v.value.values))
+
+        reaction_instants = []
+        leader_times = lst_test[0]
+        for head_time in leader_times:
+            reaction_instants.append(consecutive_times(lst_test, head_time))
+
+        return [ri for ri in reaction_instants if len(ri) == 5]
+
     def _compute_leader_follower_times(self):
-        return
+        """
+            Compute the response time leader - follower
+        """
+        reaction_instants = self._compute_reaction_timeinstants()
+        response_times = []
+        for ri in reaction_instants:
+            response_times += [{i: y - x} for i, x, y in zip(range(1, 5), ri[:-1], ri[1:])]
+        return pd.DataFrame(response_times)
 
     def _compute_head_follower_times(self):
-        return
+        """
+            Compute the response time head - follower
+        """
+        reaction_instants = self._compute_reaction_timeinstants()
+        lead_times = []
+        for ri in reaction_instants:
+            lead_times += [{i: x - ri[0]} for i, x in zip(range(1, 5), ri[1:])]
+        return pd.DataFrame(lead_times)
 
     # ============================================================================
     # Generic content probably for a general class to create heritage
