@@ -17,12 +17,11 @@ from itertools import repeat
 # ============================================================================
 
 from .constants import (
-    COLUMNS_SPACING,
-    COLUMNS_SPEED,
-    COLUMNS_TIME,
+    COLUMNS_SPEED_POC,
     STANDARD_SPEED_COLUMNS,
     DCT_STD_SPEED_CSV,
     # Standard functions for columns
+    standard_speed,
     average_velocity,
     stdev_velocity,
     derivative_sd_velocity,
@@ -33,6 +32,8 @@ from .constants import (
 )
 
 
+COLUMNS_TIME = ["Time"]
+
 # ============================================================================
 # CLASS AND DEFINITIONS
 # ============================================================================
@@ -42,7 +43,28 @@ def standardize_dataframe(dataExp):
     """ 
         This just fixes the column names so that they are familiar for all 
     """
-    return dataExp.rename(columns=DCT_STD_SPEED_CSV, inplace=True)
+    return dataExp.rename(columns=DCT_STD_SPEED_CSV)
+
+
+def clean_data(dataExp):
+    """
+        This is a function to clean values starting from head of the platoons towards the tail. 
+    """
+    data_filtered = []
+    for vehid in range(0, 5):
+        data_filtered.append(dataExp[~dataExp[standard_speed(vehid)].isna()])
+
+    # Concatenate and drop duplicates
+    dataFilter = pd.concat(data_filtered).drop_duplicates()
+
+    # Cliping values between 0 ~ 50 (for min speed)
+    for vehid in range(0,5):
+        dataFilter[standard_speed(vehid)].clip(0, 50, inplace=True)
+
+    # Sorting values
+    dataFilter.reset_index().sort_values(by=["Heure", "Time"], inplace=True)
+
+    return dataFilter
 
 
 def compute_statistics(dataExp, windowSize: int = 10):
