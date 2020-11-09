@@ -1,9 +1,9 @@
 # Vehicle time response reliability on vehicle automation
 ## Evidence from experimental driving modes in platooning conditions
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/aladinoster/vrt_analysis/master?filepath=CARMAEDA.ipynb)
+CARMA Analysis: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/aladinoster/vrt_analysis/master?filepath=CARMAEDA.ipynb)
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/aladinoster/vrt_analysis/master?filepath=PoCEDA.ipynb)
+PoC Analysis: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/aladinoster/vrt_analysis/master?filepath=PoCEDA.ipynb)
 
 ### <span style="color:red"> Launch simulations </span>
 
