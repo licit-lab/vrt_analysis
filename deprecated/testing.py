@@ -11,21 +11,21 @@ csvpath = "data/raw/poc/data28_mieux.csv"
 experiment2 = DataHandler(csvpath)
 
 #%%
-experiment1._standardize_data()
-experiment2._standardize_data()
+experiment1.compute_response_times()
+
 
 #%% 
-experiment1._clean_data()
-# experiment2._clean_data()
+experiment2._standardize_data()
+experiment2._clean_data()
 
 #%%
-experiment.compute_response_times()
+
 
 #%%
-experiment._transitiontimes
+experiment1._transitiontimes
 
 # %%
-experiment.plot_speed_timedetections()
+experiment1.plot_speed_timedetections()
 # %%
 from collector.generic import consecutive_times
 
