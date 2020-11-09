@@ -58,7 +58,8 @@ def clean_data(dataExp):
     dataFilter = pd.concat(data_filtered).drop_duplicates()
 
     # Cliping values between 0 ~ 50 (for min speed)
-    dataFilter.clip(0, 50, inplace=True)
+    for vehid in range(0,5):
+        dataFilter[standard_speed(vehid)].clip(0, 50, inplace=True)
 
     # Sorting values
     dataFilter.reset_index().sort_values(by=["Heure", "Time"], inplace=True)
