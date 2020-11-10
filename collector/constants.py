@@ -9,9 +9,7 @@ COLUMNS_SPEED_CARMA = ["leader_GPS_CARMA_speed"] + [f"follower{i}_GPS_CARMA_spee
 COLUMNS_SPACING_POC = [f"distToPVeh_CACC_follower{i}" for i in (1, 2, 3, 4)]
 COLUMNS_SPEED_POC = ["speed_CACC_leader"] + [f"speed_CACC_follower{i}" for i in (1, 2, 3, 4)]
 COLUMNS_TIME_CARMA = ["Time", "Heure"]
-COLUMNS_TIME_POC = [
-    "bin_utc_time_formatted",
-]
+COLUMNS_TIME_POC = ["elapsed_time (s)"]
 COLUMNS_TIME = ["Time"]
 
 # Standard column names
