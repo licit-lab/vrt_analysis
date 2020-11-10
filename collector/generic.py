@@ -62,7 +62,7 @@ def clean_data(dataExp):
         dataFilter[standard_speed(vehid)].clip(0, 50, inplace=True)
 
     # Sorting values
-    dataFilter.reset_index().sort_values(by=["Heure", "Time"], inplace=True)
+    dataFilter.reset_index().sort_values(by=["Time"], inplace=True)
 
     return dataFilter
 
