@@ -165,19 +165,14 @@ class POCData:
         """
         self._csvpath = csv_path if not self._csvpath else self._csvpath
         self._experiment = self._csvpath.split("/")[-1].split(".")[-2]
-
-        cols_to_load = (
-            COLUMNS_SPACING_POC + COLUMNS_SPEED_POC + COLUMNS_TIME_POC
-        )
-
-        self._csvdata = pd.read_csv(
-            self._csvpath, usecols=cols_to_load, sep=",", decimal="."
-        )
-        self._csvdata[["Day", "Heure"]] = self._csvdata[
-            "bin_utc_time_formatted"
-        ].str.split(" ", expand=True)
-        self._csvdata["Time"] = (
-            pd.to_datetime(self._csvdata["Heure"])
-            .diff()
-            .fillna(pd.Timedelta(milliseconds=50))
-        ).apply(lambda x: x.total_seconds())
+        cols_to_load = COLUMNS_SPACING_POC + COLUMNS_SPEED_POC + COLUMNS_TIME_POC
+        self._csvdata = pd.read_csv(self._csvpath, usecols=cols_to_load, sep=",", decimal=".")
+        
+        #self._csvdata[["Day", "Heure"]] = self._csvdata[
+         #   "bin_utc_time_formatted"
+        #].str.split(" ", expand=True)
+        self._csvdata["Time"] = self._csvdata["elapsed_time (s)"]
+         #   pd.to_datetime(self._csvdata["Heure"])
+         #   .diff()
+         #   .fillna(pd.Timedelta(milliseconds=50))
+        #).apply(lambda x: x.total_seconds())
