@@ -15,9 +15,9 @@
 
 import pandas as pd
 from dataclasses import dataclass
-from sodapy import Socrata
 from decouple import config
 from tqdm import tqdm
+from sodapy import Socrata
 
 # ============================================================================
 # CLASS AND DEFINITIONS
