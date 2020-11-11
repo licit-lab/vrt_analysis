@@ -61,13 +61,14 @@ def clean_data(dataExp):
     for vehid in range(0,5):
         dataFilter[standard_speed(vehid)].clip(0, 50, inplace=True)
 
-    # Sorting values
-    dataFilter.reset_index().sort_values(by=["Heure", "Time"], inplace=True)
+    # Sorting values (normalement ce n'est pas utile)
+    dataFilter.sort_values(by=["Time"], inplace=True)
+    dataFilter.reset_index(drop = True)
 
     return dataFilter
 
 
-def compute_statistics(dataExp, windowSize: int = 10):
+def compute_statistics(dataExp, windowSize: int = 20):
     """ 
         Compute statistics from the speed variable. This script will compute statiscs for the speed variable for all the vehicles within the platoon. 
 
@@ -90,6 +91,7 @@ def compute_statistics(dataExp, windowSize: int = 10):
     for vehid, col in enumerate(STANDARD_SPEED_COLUMNS):
         # Find moving average speed
         dataExp[average_velocity(vehid)] = dataExp[col].rolling(window=indexer).mean()
+        #dataExp[average_velocity(vehid)] = dataExp[average_velocity(vehid)].rolling(window=indexer).mean()
 
         # Find moving average standard deviation (from Avg. Speed)
         dataExp[stdev_velocity(vehid)] = dataExp[average_velocity(vehid)].rolling(window=indexer).std()

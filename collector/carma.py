@@ -35,7 +35,7 @@ from .constants import (
     changes,
     detection,
 )
-from .generic import standardize_dataframe, compute_statistics, detect_transition_times, consecutive_times
+#from .generic import standardize_dataframe, compute_statistics, detect_transition_times, consecutive_times
 
 # ============================================================================
 # CLASS AND DEFINITIONS
@@ -120,7 +120,7 @@ class CarmaData:
         dfCliped["leader_GPS_CARMA_speed"] = dfCliped["leader_GPS_CARMA_speed"].clip(0, 50)
 
         # Sorting values
-        dfSorted = dfCliped.reset_index().sort_values(by=["Heure", "Time"])
+        dfSorted = dfCliped.reset_index().sort_values(by=["Time"])
 
         # Reassigning to csvdata
         self._csvdata = dfSorted
