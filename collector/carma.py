@@ -35,7 +35,7 @@ from .constants import (
     changes,
     detection,
 )
-from .generic import standardize_dataframe, compute_statistics, detect_transition_times, consecutive_times
+#from .generic import standardize_dataframe, compute_statistics, detect_transition_times, consecutive_times
 
 # ============================================================================
 # CLASS AND DEFINITIONS
