@@ -120,7 +120,7 @@ class CarmaData:
         dfCliped["leader_GPS_CARMA_speed"] = dfCliped["leader_GPS_CARMA_speed"].clip(0, 50)
 
         # Sorting values
-        dfSorted = dfCliped.reset_index().sort_values(by=["Heure", "Time"])
+        dfSorted = dfCliped.reset_index().sort_values(by=["Time"])
 
         # Reassigning to csvdata
         self._csvdata = dfSorted
