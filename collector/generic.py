@@ -68,7 +68,7 @@ def clean_data(dataExp):
     return dataFilter
 
 
-def compute_statistics(dataExp, windowSize: int = 20):
+def compute_statistics(dataExp, windowSize: int = 10):
     """ 
         Compute statistics from the speed variable. This script will compute statiscs for the speed variable for all the vehicles within the platoon. 
 
