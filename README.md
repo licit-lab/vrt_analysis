@@ -13,7 +13,7 @@
 
 **Individual profile speeds**
 
-![speeds](data/media/Fig6SpeedsFollower1.png)
+![speeds](data/media/Fig1TimeDetection.png)
 
 **Response time distributions**
 
