@@ -52,7 +52,7 @@ class DataHandler:
     def __repr__(self):
         return repr(self.data)
 
-    def compute_response_times(self, csvpath: str = ""):
+    def compute_response_times(self, **kwargs):
         """
         Performs computation of the response times for a specific dataset, the
         full pipeline includes
@@ -70,7 +70,7 @@ class DataHandler:
         print("Cleaning data")
         self._clean_data()
         print("Computing Statistics")
-        self._compute_speed_statistics()
+        self._compute_speed_statistics(**kwargs)
         print("Computing transition times")
         self._compute_transition_times()
         # print("Computing response time i/ i-1")
@@ -94,13 +94,13 @@ class DataHandler:
         """
         self.data = clean_data(self.data)
 
-    def _compute_speed_statistics(self):
+    def _compute_speed_statistics(self,**kwargs):
         """
         Compute statistics for the speed variable.
 
         Check more info within the generic.py module
         """
-        compute_statistics(self.data)
+        compute_statistics(self.data,**kwargs)
 
     def _compute_transition_times(self):
         """
