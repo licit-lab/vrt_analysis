@@ -2,7 +2,7 @@
 
 This code aims to reproduce the results in the paper 
 
- Lanaud, E et al. First Observations about Response Times and Connectivity in a Vehicles Platooning Experiment. 
+*Lanaud, E et al. (2021). First Observations about Response Times and Connectivity in a Vehicles Platooning Experiment. Transportation Findings*
 
 Please find the corresponding paper [here](https://findingspress.org/article/21190-first-observations-about-response-times-and-connectivity-in-a-vehicles-platooning-experiment)
 
